@@ -19,9 +19,11 @@ texto <- "Pues sepa Vuestra Merced, ante todas cosas, que a mí llaman Lázaro d
 a<-str_count(tolower(texto),"[^aeiou]")
 a
 
+#En texto hay 503 vocales (sin acentuar).
 b<-str_count(tolower(texto), "[aeiou]")
 b
 
+#En texto hay 267 espacios en blanco.
 d<-str_count(tolower(texto), " ")
 d
 
@@ -41,4 +43,60 @@ c
 #En texto hay 599 consonantes.
 d<-str_count(tolower(texto), "[bcdfghjklmnpqrstvwxyz]")
 d
+```
+
+Cuestión 2:
+
+El fichero [Nosotros.tsv](https://aulavirtual.uv.es/pluginfile.php/2431056/question/questiontext/1946519/2/17703680/Nosotros.tsv), registra una serie de características (ver debajo) de un grupo de estudiantes y su profesor. Se desea saber cuál es la suma de las edades (en años) de todos los miembros hasta el primer día de clase (**3 de febrero de 2021**). Considera años de 365 días. (Redondea el resultado a 3 decimales.)
+
+**NOTA**: AL RELLENAR LA ENCUESTA NO SIEMPRE SE HAN SEGUIDO LAS INDICACIONES. REVISA Y ADECÚA LOS DATOS CUANDO SEA NECESARIO.
+
+***Variables***
+
+-   **Fecha** Fecha de nacimiento en formato dd-mm-yyyy\
+
+-   **Identificación** Usuario de correo UV. martsobm\
+
+-   **Age** Edad en años.\
+
+-   **Sex** Sexo: Femenino, Masculino\
+
+-   **Wr.Hnd** Distancia del extremo del meñique al extremo del pulgar de la mano con la que escribimos. (en centímetros) PALMO\
+
+-   **NW.Hnd** Mano con la que escribes: Izquierda, Derecha\
+
+-   **Fold** Cruza los brazos. Qué brazo está arriba ?: Izquierdo, Derecho\
+
+-   **Pulse** Cuál es tu ritmo cardíaco, en reposo, en latidos por minuto.\
+
+-   **Clap** Aplaude. ¿Cómo están las manos ?. 3 casos. \'Der s Izd\', (Derecha sobre izquierda) \' Izq s Der\', \'Ninguna\'\
+
+-   **Smoke** Fumas: Si / No\
+
+-   **Height** Altura (en centímetros)\
+
+-   **ALG** Calificación numérica obtenida en álgebra. Usa NP para no presentado y NC, para no compensable, si procede\
+
+-   **ANM** Calificación numérica obtenida en análisis matemático. Usa NA para no presentado y NC, para no compensable, si procede\
+
+-   **FP** Calificación numérica obtenida en fundamentos de programación. Usa NA para no presentado y NC, para no compensable, si procede\
+
+-   **DCS** Calificación numérica obtenida en Datos Ciencia y Sociedad. Usa NA para no presentado y NC, para no compensable, si procede\
+
+-   **MD** Calificación numérica obtenida en Matemática Discreta. Usa NA para no presentado y NC, para no compensable, si procede\
+
+-   **HSt** Horas de trabajo DIARIAS relacionadas con los estudios, además de la asistencia a clase.\
+
+-   **Hwork** ¿Tienes un trabajo remunerado además del estudio ?. Indica las horas de trabajo SEMANALES. 0 indica que no tiene otro trabajo.\
+
+-   **Comentarios OBLIGATORIO**: Campo de texto libre para incluir comentarios que consideres sobre la asignatura.
+
+```{r}
+library(readr)
+Nosotros <- read_table("data/Nosotros.tsv")
+Nosotros$`FechaNac(DD-MM-YYY)`<-asDate(Nosotros$`FechaNac(DD-MM-YYY)`, "%d-%m-%Y")
+```
+
+```{r}
+UScereal <- read_csv("data/UScereal.csv")
 ```
